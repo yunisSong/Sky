@@ -1,15 +1,15 @@
 //
-//  SkyTests.swift
+//  WeatherDataManagerTest.swift
 //  SkyTests
 //
-//  Created by Mars on 28/09/2017.
-//  Copyright © 2017 Mars. All rights reserved.
+//  Created by Yunis on 2018/6/4.
+//  Copyright © 2018年 三十一. All rights reserved.
 //
 
 import XCTest
 @testable import Sky
 
-class SkyTests: XCTestCase {
+class WeatherDataManagerTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
