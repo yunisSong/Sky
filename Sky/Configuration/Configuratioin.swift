@@ -10,6 +10,7 @@ import Foundation
 
 struct API {
     static let key = "b027d54d74819767c410e6950dcada38"
-    static var baseURL = URL(string: "https://api.darksky.net/forecast")!
-    static let authenticatedURL = baseURL.appendPathComponent(key)
+    static let baseURL = URL(string: "https://api.darksky.net/forecast")!
+    static let authenticatedURL = baseURL.appendingPathComponent(key)
 }
+
