@@ -8,23 +8,30 @@
 
 import Foundation
 
+//错误枚举类
 enum DataManagerError: Error {
     case failedRequest
     case invalidResponse
     case unknown
 }
 
+
+//网络请求管理类
 final class WeatherDataManager {
-    private let baseURL : URL
-    
-    private init(baseURL : URL) {
+    internal let baseURL : URL
+    internal let urlSession :URLSessionProtocol
+    internal init(baseURL : URL, urlSession: URLSessionProtocol) {
         self.baseURL = baseURL
+        self.urlSession = urlSession
     }
     
-    static let shared = WeatherDataManager(baseURL: API.authenticatedURL)
+    //单例 初始化
+    static let shared = WeatherDataManager(baseURL: API.authenticatedURL,urlSession: URLSession.shared)
     
+    //定义回调函数 typealias 别名
     typealias CompletionHandler = (WeatherData?,DataManagerError?) -> Void
     
+    // 发送网络请求
     func weatherDataAt(latitude: Double,longitude: Double,completion: @escaping CompletionHandler) {
         
         let url = baseURL.appendingPathComponent("\(latitude),\(longitude)")
@@ -34,7 +41,7 @@ final class WeatherDataManager {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "GET"
         
-        URLSession.shared.dataTask(with: request, completionHandler: {
+        self.urlSession.dataTask(with: request, completionHandler: {
             (data, response, error) in
             DispatchQueue.main.async {
                 self.didFinishGettingWeatherData(data: data, response: response, error: error, completion: completion)
@@ -42,7 +49,7 @@ final class WeatherDataManager {
         }).resume()
     }
     
-    
+    //网络请求数据处理 回调
     func didFinishGettingWeatherData(data: Data?,response: URLResponse?,error: Error?,completion: CompletionHandler)  {
         
         if let _ = error {
