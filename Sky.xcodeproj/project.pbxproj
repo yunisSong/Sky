@@ -190,6 +190,7 @@
 		6890B8441F7CC3CF00ACB755 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8BBDC86D20C9185100DD1E68 /* RootViewController */,
 				6890B8131F7CC25500ACB755 /* ViewController.swift */,
 			);
 			path = ViewControllers;
@@ -236,6 +237,13 @@
 				8B53E73720BF9C3000104A64 /* WeatherDataManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		8BBDC86D20C9185100DD1E68 /* RootViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RootViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
