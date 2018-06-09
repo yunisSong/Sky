@@ -123,12 +123,12 @@ class WeatherDataManagerTest: XCTestCase {
         
         var decoded : WeatherData? = nil
         let manage = WeatherDataManager.init(baseURL: url, urlSession: session)
-//        manage.weatherDataAt(latitude: 52, longitude: 100) { (d, _) in
-//            decoded = d
-//        }
-        manage.weatherDataAt(latitude: 52, longitude: 100, completion:  { (d, _) in
+        manage.weatherDataAt(latitude: 52, longitude: 100) { (d, _) in
             decoded = d
-        })
+        }
+//        manage.weatherDataAt(latitude: 52, longitude: 100, completion:  { (d, _) in
+//            decoded = d
+//        })
         
         let expectde = WeatherData.init(latitude: 52, longitude: 100, currently: WeatherData.CurrentWeather.init(time: Date.init(timeIntervalSince1970: 1507180335), summary: "Light Snow", icon: "snow", temperature: 23, humidity: 0.91))
         

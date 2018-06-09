@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Root View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Sky" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RootViewController" customModule="Sky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,14 +49,23 @@
             </objects>
             <point key="canvasLocation" x="-2" y="116"/>
         </scene>
-        <!--View Controller-->
+        <!--Current Weather View Controller-->
         <scene sceneID="4ho-6p-H09">
             <objects>
-                <viewController id="vXA-Ag-eKU" sceneMemberID="viewController">
+                <viewController id="vXA-Ag-eKU" customClass="CurrentWeatherViewController" customModule="Sky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aUU-Nx-1vq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="254"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5W9-sZ-ecV">
+                                <rect key="frame" x="177" y="117" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rn0-HP-dXo">
+                                <rect key="frame" x="8" y="116" width="359" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LpX-RU-Hpe">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="254"/>
                                 <subviews>
@@ -74,6 +83,9 @@
                                             <constraint firstAttribute="width" constant="44" id="AyM-CO-0SM"/>
                                         </constraints>
                                         <state key="normal" image="LocationBtn"/>
+                                        <connections>
+                                            <action selector="locationButtonPressed:" destination="vXA-Ag-eKU" eventType="touchUpInside" id="0yb-cg-wxo"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IST-s7-KUD">
                                         <rect key="frame" x="323" y="8" width="44" height="44"/>
@@ -82,6 +94,9 @@
                                             <constraint firstAttribute="height" constant="44" id="QDO-iG-lwF"/>
                                         </constraints>
                                         <state key="normal" image="Setting"/>
+                                        <connections>
+                                            <action selector="settingsButtonPressed:" destination="vXA-Ag-eKU" eventType="touchUpInside" id="bCJ-7j-u4H"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kth-bO-4kq">
                                         <rect key="frame" x="60" y="14.5" width="255" height="31.5"/>
@@ -142,15 +157,32 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LpX-RU-Hpe" firstAttribute="top" secondItem="aUU-Nx-1vq" secondAttribute="top" id="Dfk-Op-w9H"/>
+                            <constraint firstItem="Pz5-f9-yRv" firstAttribute="trailing" secondItem="Rn0-HP-dXo" secondAttribute="trailing" constant="8" id="EVg-UD-FIb"/>
+                            <constraint firstItem="5W9-sZ-ecV" firstAttribute="centerX" secondItem="aUU-Nx-1vq" secondAttribute="centerX" id="H7R-jA-VcE"/>
+                            <constraint firstItem="5W9-sZ-ecV" firstAttribute="centerY" secondItem="aUU-Nx-1vq" secondAttribute="centerY" id="Tbi-Xv-XWm"/>
                             <constraint firstItem="LpX-RU-Hpe" firstAttribute="leading" secondItem="aUU-Nx-1vq" secondAttribute="leading" id="YC1-9t-3y0"/>
+                            <constraint firstItem="Rn0-HP-dXo" firstAttribute="centerY" secondItem="aUU-Nx-1vq" secondAttribute="centerY" id="ZQO-sN-oWK"/>
                             <constraint firstAttribute="trailing" secondItem="LpX-RU-Hpe" secondAttribute="trailing" id="bAs-jc-j2t"/>
+                            <constraint firstItem="Rn0-HP-dXo" firstAttribute="leading" secondItem="Pz5-f9-yRv" secondAttribute="leading" constant="8" id="kCa-ZF-s3w"/>
                             <constraint firstAttribute="bottom" secondItem="LpX-RU-Hpe" secondAttribute="bottom" id="l8L-1j-cUh"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pz5-f9-yRv"/>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="5W9-sZ-ecV" id="JKP-l3-qaE"/>
+                        <outlet property="dateLabel" destination="CwB-zq-016" id="CT2-Jd-ZWb"/>
+                        <outlet property="humidityLabel" destination="N9o-YE-Am6" id="a3z-Tt-fbd"/>
+                        <outlet property="loadingFailedLabel" destination="Rn0-HP-dXo" id="dF9-Dc-96i"/>
+                        <outlet property="locationLabel" destination="Kth-bO-4kq" id="DsS-MB-q3Y"/>
+                        <outlet property="summaryLabel" destination="oAA-tm-5kR" id="UEH-Hs-eck"/>
+                        <outlet property="temperatureLabel" destination="Vxz-a3-W9Z" id="MXw-l8-7Yc"/>
+                        <outlet property="weatherContainerView" destination="LpX-RU-Hpe" id="Lte-MM-Ah5"/>
+                        <outlet property="weatherIcon" destination="eZn-hh-yA3" id="vgC-Na-leq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsj-37-sm8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="776.79999999999995" y="-70.164917541229386"/>
+            <point key="canvasLocation" x="850" y="-70"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="dzD-c2-Pyf">
@@ -160,6 +192,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="381"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="b7h-yY-D5S"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WIB-pz-i6R" userLabel="First Responder" sceneMemberID="firstResponder"/>
