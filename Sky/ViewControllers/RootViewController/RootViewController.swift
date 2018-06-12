@@ -10,8 +10,10 @@ import UIKit
 import CoreLocation
 
 class RootViewController: UIViewController {
-    
 
+    private let segueCurrentWeather = "SegueCurrentWeather"
+    var currentWeatherViewController : CurrentWeatherViewController!
+    
     
     private lazy var locationManager : CLLocationManager = {
         let clManager = CLLocationManager()
@@ -19,16 +21,14 @@ class RootViewController: UIViewController {
         clManager.desiredAccuracy = 1000
         return clManager
     }()
-    
-    
-    
+
     private var currentLocation: CLLocation? {
         didSet {
-            
+            fetchCity()
+            fetchWeather()
         }
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -57,6 +57,40 @@ class RootViewController: UIViewController {
             name: Notification.Name.UIApplicationDidBecomeActive,
             object: nil)
         
+    }
+    
+    private func fetchCity() {
+        
+        guard let currentLocation = currentLocation else {
+            return
+        }
+        
+        CLGeocoder().reverseGeocodeLocation(currentLocation) { (placemarks, error) in
+            if let error = error {
+                dump(error)
+            }else if let city = placemarks?.first?.locality {
+                // Todo: 通知 当前天气控制器
+                
+            }
+        }
+    }
+    
+    private func fetchWeather() {
+        guard let currentLocation = currentLocation else {
+            return
+        }
+        
+        let lat = currentLocation.coordinate.latitude
+        let lon = currentLocation.coordinate.longitude
+        
+        WeatherDataManager.shared.weatherDataAt(latitude: lat, longitude: lon) { (response, error) in
+            
+            if let error = error {
+                dump(error)
+            }else if let response = response {
+                // Todo: 通知 当前天气控制器
+            }
+        }
     }
 
 }
