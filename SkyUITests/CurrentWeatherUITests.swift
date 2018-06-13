@@ -1,14 +1,17 @@
 //
-//  SkyUITests.swift
+//  CurrentWeatherUITests.swift
 //  SkyUITests
 //
-//  Created by Mars on 28/09/2017.
-//  Copyright © 2017 Mars. All rights reserved.
+//  Created by Yunis on 2018/6/13.
+//  Copyright © 2018年 三十一. All rights reserved.
 //
 
 import XCTest
 
-class SkyUITests: XCTestCase {
+class CurrentWeatherUITests: XCTestCase {
+    
+     let app = XCUIApplication()
+    
         
     override func setUp() {
         super.setUp()

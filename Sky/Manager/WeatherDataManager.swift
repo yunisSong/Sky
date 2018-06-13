@@ -62,6 +62,7 @@ final class WeatherDataManager {
                     decoder.dateDecodingStrategy = .secondsSince1970
                     let weatherData = try decoder.decode(
                         WeatherData.self, from: data)
+                    print(weatherData)
                     completion(weatherData, nil)
                 }catch {
                     completion(nil, .invalidResponse)

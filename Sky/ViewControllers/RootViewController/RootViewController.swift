@@ -29,6 +29,25 @@ class RootViewController: UIViewController {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let identifier = segue.identifier else {return}
+        
+        switch identifier {
+        case segueCurrentWeather:
+            guard let destination = segue.destination as? CurrentWeatherViewController else {
+                fatalError("Invalid destination view controller!")
+            }
+            destination.delegate = self
+            destination.viewModel = CurrentWeatherViewModel()
+            currentWeatherViewController = destination
+            
+            
+        default:
+            break
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -70,6 +89,10 @@ class RootViewController: UIViewController {
                 dump(error)
             }else if let city = placemarks?.first?.locality {
                 // Todo: 通知 当前天气控制器
+                self.currentWeatherViewController.viewModel?.location = Location(
+                    name: city,
+                    latitude: currentLocation.coordinate.latitude,
+                    longitude: currentLocation.coordinate.longitude)
                 
             }
         }
@@ -89,6 +112,7 @@ class RootViewController: UIViewController {
                 dump(error)
             }else if let response = response {
                 // Todo: 通知 当前天气控制器
+                self.currentWeatherViewController.viewModel?.weather = response
             }
         }
     }
@@ -129,13 +153,23 @@ extension RootViewController : CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
         dump(error)
     }
     
 }
 
-
-
+// MARK: - CurrentWeatherViewControllerDelegate
+extension RootViewController : CurrentWeatherViewControllerDelegate {
+    
+    func locationButtonPressed(controller: CurrentWeatherViewController) {
+        print("open locations.")
+    }
+    
+    func settingsButtonPressed(controller: CurrentWeatherViewController) {
+        print("open Settings.")
+    }
+}
 
 
 
