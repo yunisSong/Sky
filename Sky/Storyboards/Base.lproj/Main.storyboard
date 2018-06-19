@@ -28,7 +28,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eo0-Mm-gza">
                                 <rect key="frame" x="0.0" y="286" width="375" height="381"/>
                                 <connections>
-                                    <segue destination="dka-JY-Hha" kind="embed" id="kIi-I4-2Dz"/>
+                                    <segue destination="dka-JY-Hha" kind="embed" identifier="SegueWeekWeather" id="kIi-I4-2Dz"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -209,7 +209,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="381"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeekWeatherCell" rowHeight="104" id="smK-Kt-9Hq" customClass="WeekWeatherTableViewCell" customModule="Sky" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeekWeatherCell" rowHeight="104" id="smK-Kt-9Hq" customClass="WeekWeatherTableViewCell" customModule="Sky" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="104"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="smK-Kt-9Hq" id="SdI-dE-bwb">
@@ -251,6 +251,7 @@
                                                     <constraints>
                                                         <constraint firstItem="JBK-A0-riN" firstAttribute="top" secondItem="SdI-dE-bwb" secondAttribute="topMargin" id="5BZ-9I-J47"/>
                                                         <constraint firstAttribute="bottomMargin" secondItem="gLp-wp-rcQ" secondAttribute="bottom" id="Eia-JH-RqU"/>
+                                                        <constraint firstItem="vLR-2d-vFW" firstAttribute="top" secondItem="fhz-dp-NQy" secondAttribute="bottom" constant="8" id="End-Ix-GVa"/>
                                                         <constraint firstItem="JBK-A0-riN" firstAttribute="leading" secondItem="SdI-dE-bwb" secondAttribute="leadingMargin" id="H0b-md-Kks"/>
                                                         <constraint firstItem="vLR-2d-vFW" firstAttribute="leading" secondItem="SdI-dE-bwb" secondAttribute="leadingMargin" id="KVK-ie-vSL"/>
                                                         <constraint firstItem="vLR-2d-vFW" firstAttribute="width" secondItem="gLp-wp-rcQ" secondAttribute="width" id="Kgy-HG-jjb"/>
@@ -277,7 +278,6 @@
                                         </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="dka-JY-Hha" id="mZU-1r-Fhh"/>
-                                            <outlet property="delegate" destination="dka-JY-Hha" id="889-D5-7DV"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -308,6 +308,7 @@
                         <outlet property="activityIndicatorView" destination="C8O-uK-HM9" id="GOJ-Nr-o0q"/>
                         <outlet property="loadingFailedLabel" destination="RPy-aY-Jdq" id="s25-un-IIR"/>
                         <outlet property="weatherContainerView" destination="IJi-Eg-wDh" id="XWf-09-Ab8"/>
+                        <outlet property="weekWeatherTableView" destination="vhp-8S-HEd" id="Ix4-T1-5bl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WIB-pz-i6R" userLabel="First Responder" sceneMemberID="firstResponder"/>
